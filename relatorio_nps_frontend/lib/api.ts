@@ -1,9 +1,7 @@
-// Configuração base da API
 const API_BASE_URL = process.env.NODE_ENV === 'production' 
   ? 'http://localhost:3001' 
-  : '/api'; // Em desenvolvimento, usa o proxy do Next.js
+  : '/api';
 
-// Interfaces
 interface Company {
   id: string
   name: string
@@ -32,7 +30,6 @@ interface CreateFeedbackData {
   comment: string
 }
 
-// Função helper para fazer requisições
 async function apiRequest(endpoint: string, options: RequestInit = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
   
@@ -56,9 +53,7 @@ async function apiRequest(endpoint: string, options: RequestInit = {}) {
   return response.json();
 }
 
-// Funções da API
 export const api = {
-  // GET /companies - Buscar todas as empresas
   async getCompanies(): Promise<Company[]> {
     try {
       return await apiRequest('/companies');
@@ -68,7 +63,6 @@ export const api = {
     }
   },
 
-  // GET /feedback - Buscar feedbacks (opcionalmente filtrados por empresa)
   async getFeedbacks(companyName?: string, companyId?: string): Promise<Feedback[]> {
     try {
       let endpoint = '/feedback';
@@ -88,7 +82,6 @@ export const api = {
     }
   },
 
-  // GET /nps - Buscar dados de NPS (opcionalmente filtrados por empresa)
   async getNPSData(companyName?: string, companyId?: string): Promise<NPSData | null> {
     try {
       let endpoint = '/nps';
@@ -108,7 +101,6 @@ export const api = {
     }
   },
 
-  // POST /feedback - Criar novo feedback
   async createFeedback(feedbackData: CreateFeedbackData): Promise<Feedback> {
     return await apiRequest('/feedback', {
       method: 'POST',
@@ -117,5 +109,4 @@ export const api = {
   }
 };
 
-// Exportar tipos para uso em outros arquivos
 export type { Company, Feedback, NPSData, CreateFeedbackData };

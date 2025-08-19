@@ -1,4 +1,5 @@
 services:
+  # Banco de Dados PostgreSQL
   db:
     image: postgres:16-alpine
     container_name: nps-db
@@ -15,10 +16,13 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - nps-network
 
+  # Backend API (NestJS)
   api:
     build:
-      context: .
+      context: ./relatorio_nps_backend
       dockerfile: Dockerfile
     container_name: nps-api
     depends_on:
@@ -31,6 +35,29 @@ services:
     ports:
       - "3001:3001"
     restart: on-failure
+    networks:
+      - nps-network
+
+  # Frontend (Next.js)
+  frontend:
+    build:
+      context: ./relatorio_nps_frontend
+      dockerfile: Dockerfile
+    container_name: nps-frontend
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: production
+      API_URL: http://api:3001
+    ports:
+      - "3000:3000"
+    restart: on-failure
+    networks:
+      - nps-network
 
 volumes:
   nps_pgdata:
+
+networks:
+  nps-network:
+    driver: bridge
