@@ -41,6 +41,15 @@ npm run start:dev
 
 A aplicação estará disponível em `http://localhost:3001`.
 
+## Docker e `entrypoint.sh`
+
+O `entrypoint.sh` é um script de inicialização para o contêiner Docker. Ele garante que o banco de dados esteja acessível antes de iniciar a aplicação. Suas principais funções são:
+
+1.  **Aguardar o PostgreSQL**: Verifica a conexão com o banco de dados e aguarda até que ele esteja pronto para aceitar conexões.
+2.  **Gerar o Prisma Client**: Executa `npx prisma generate` para garantir que o cliente Prisma esteja atualizado com o schema.
+3.  **Executar Migrações**: Aplica as migrações pendentes do banco de dados com `npx prisma migrate deploy`.
+4.  **Iniciar a Aplicação**: Inicia o servidor NestJS com `node dist/main.js`.
+
 ## Endpoints da API
 
 A seguir estão os endpoints disponíveis na API.
