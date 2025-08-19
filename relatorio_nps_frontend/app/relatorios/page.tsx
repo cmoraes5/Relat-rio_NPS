@@ -55,7 +55,7 @@ export default function RelatoriosPage() {
         api.getFeedbacks(companyName),
         api.getNPSData(companyName),
       ]);
-      
+
       setFeedbacks(feedbackData);
       setNPSData(npsDataResult);
     } catch (error) {
@@ -194,19 +194,27 @@ export default function RelatoriosPage() {
                         </div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-semibold text-green-500">
-                          {npsData.promoters}
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          Promotores
-                        </div>
-                      </div>
-                      <div className="text-center">
                         <div className="text-2xl font-semibold text-red-500">
                           {npsData.detractors}
                         </div>
                         <div className="text-sm text-muted-foreground">
                           Detratores
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-semibold text-yellow-500">
+                          {npsData.neutrals}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          Neutros
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-semibold text-green-500">
+                          {npsData.promoters}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          Promotores
                         </div>
                       </div>
                     </div>
@@ -267,16 +275,24 @@ export default function RelatoriosPage() {
                               </span>
                             </div>
                             <span className="text-sm text-muted-foreground">
-                              {new Date(feedback.createdAt).toLocaleDateString("pt-BR")}
+                              {new Date(feedback.createdAt).toLocaleDateString(
+                                "pt-BR"
+                              )}
                             </span>
                           </div>
                           {feedback.userName && (
                             <div className="flex items-center gap-1 mb-2">
                               <User className="h-3 w-3 text-muted-foreground" />
-                              <span className="text-sm text-muted-foreground">{feedback.userName}</span>
+                              <span className="text-sm text-muted-foreground">
+                                {feedback.userName}
+                              </span>
                             </div>
                           )}
-                          {feedback.comment && <p className="text-sm text-muted-foreground">"{feedback.comment}"</p>}
+                          {feedback.comment && (
+                            <p className="text-sm text-muted-foreground">
+                              "{feedback.comment}"
+                            </p>
+                          )}
                         </div>
                       ))}
                     </div>

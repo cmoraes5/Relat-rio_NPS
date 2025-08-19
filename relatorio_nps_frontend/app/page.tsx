@@ -66,7 +66,7 @@ export default function HomePage() {
             <div className="grid sm:grid-cols-3 gap-4 text-sm">
               <div className="text-center p-4 bg-red-500/10 rounded-lg">
                 <div className="font-semibold text-red-400">Detratores</div>
-                <div className="text-muted-foreground">0 - 2 estrelas</div>
+                <div className="text-muted-foreground">1 - 2 estrelas</div>
               </div>
               <div className="text-center p-4 bg-yellow-500/10 rounded-lg">
                 <div className="font-semibold text-yellow-400">Neutros</div>
