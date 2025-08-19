@@ -12,22 +12,32 @@ interface Feedback {
   companyName: string
   rating: number
   comment: string
+  userName?: string
   createdAt: string
 }
 
 interface NPSData {
   companyName: string
-  npsScore: number
+  nps: number
   totalResponses: number
   promoters: number
   neutrals: number
   detractors: number
+  companies?: {
+    companyId: string
+    name: string
+    feedbacks: {
+      comment?: string
+      userName?: string
+    }[]
+  }[]
 }
 
 interface CreateFeedbackData {
   companyName: string
   rating: number
   comment: string
+  userName?: string
 }
 
 async function apiRequest(endpoint: string, options: RequestInit = {}) {

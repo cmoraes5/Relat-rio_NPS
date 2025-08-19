@@ -22,6 +22,7 @@ import { toast } from "sonner";
 
 export default function FeedbackPage() {
   const [companyName, setCompanyName] = useState("");
+  const [userName, setUserName] = useState("");
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,6 +48,7 @@ export default function FeedbackPage() {
     try {
       await api.createFeedback({
         companyName: companyName.trim(),
+        userName: userName.trim(),
         rating,
         comment: comment.trim(),
       });
@@ -63,6 +65,7 @@ export default function FeedbackPage() {
 
   const resetForm = () => {
     setCompanyName("");
+    setUserName("");
     setRating(0);
     setComment("");
     setIsSubmitted(false);
@@ -138,6 +141,17 @@ export default function FeedbackPage() {
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
                 required
+              />
+            </div>
+
+            {/* Nome do Usuário (opcional) */}
+            <div className="space-y-2">
+              <Label htmlFor="userName">Seu Nome (opcional)</Label>
+              <Input
+                id="company"
+                placeholder="Digite o nome da empresa"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
               />
             </div>
 

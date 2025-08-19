@@ -26,5 +26,6 @@ model Feedback {
   companyId String
   rating    Int
   comment   String?
+  userName  String?
   createdAt DateTime @default(now())
 }

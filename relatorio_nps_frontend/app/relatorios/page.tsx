@@ -17,6 +17,7 @@ import {
   Star,
   TrendingUp,
   MessageSquare,
+  User,
 } from "lucide-react";
 import Link from "next/link";
 import { api, Company, Feedback, NPSData } from "@/lib/api";
@@ -175,10 +176,10 @@ export default function RelatoriosPage() {
                       <div className="text-center">
                         <div
                           className={`text-3xl font-bold ${getNPSColor(
-                            npsData.npsScore
+                            npsData.nps
                           )}`}
                         >
-                          {npsData.npsScore}
+                          {npsData.nps}
                         </div>
                         <div className="text-sm text-muted-foreground">
                           Score NPS
@@ -212,12 +213,12 @@ export default function RelatoriosPage() {
 
                     <div className="flex items-center justify-center">
                       <Badge
-                        variant={getNPSBadgeVariant(npsData.npsScore)}
+                        variant={getNPSBadgeVariant(npsData.nps)}
                         className="text-lg px-4 py-2"
                       >
-                        {npsData.npsScore >= 70
+                        {npsData.nps >= 70
                           ? "Excelente"
-                          : npsData.npsScore >= 30
+                          : npsData.nps >= 30
                           ? "Bom"
                           : "Precisa Melhorar"}
                       </Badge>
@@ -266,16 +267,16 @@ export default function RelatoriosPage() {
                               </span>
                             </div>
                             <span className="text-sm text-muted-foreground">
-                              {new Date(feedback.createdAt).toLocaleDateString(
-                                "pt-BR"
-                              )}
+                              {new Date(feedback.createdAt).toLocaleDateString("pt-BR")}
                             </span>
                           </div>
-                          {feedback.comment && (
-                            <p className="text-sm text-muted-foreground">
-                              "{feedback.comment}"
-                            </p>
+                          {feedback.userName && (
+                            <div className="flex items-center gap-1 mb-2">
+                              <User className="h-3 w-3 text-muted-foreground" />
+                              <span className="text-sm text-muted-foreground">{feedback.userName}</span>
+                            </div>
                           )}
+                          {feedback.comment && <p className="text-sm text-muted-foreground">"{feedback.comment}"</p>}
                         </div>
                       ))}
                     </div>

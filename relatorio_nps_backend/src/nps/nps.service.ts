@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { Injectable } from '@nestjs/common';import { from } from 'rxjs';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 type Filter = { companyId?: string; companyName?: string };
 
@@ -41,20 +41,29 @@ export class NpsService {
 
     const byCompany = new Map<
       string,
-      { companyId: string; name: string; comments: string[] }
+      {
+        companyId: string;
+        name: string;
+        feedbacks: { comment?: string | null; userName?: string | null }[];
+      }
     >();
+
     rows.forEach((r) => {
       const key = r.company.id;
       if (!byCompany.has(key)) {
         byCompany.set(key, {
           companyId: r.company.id,
           name: r.company.name,
-          comments: [],
+          feedbacks: [],
         });
       }
-      if (r.comment?.trim())
-        byCompany.get(key)!.comments.push(r.comment.trim());
+
+      byCompany.get(key)!.feedbacks.push({
+        comment: r.comment?.trim() || null,
+        userName: r.userName?.trim() || null,
+      });
     });
+
 
     return {
       totalResponses: total,

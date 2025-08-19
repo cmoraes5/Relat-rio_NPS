@@ -20,4 +20,9 @@ export class CreateFeedbackDto {
   @IsOptional()
   @IsString()
   comment?: string;
+
+  @ApiProperty({ example: 'Caio Moraes', required: false })
+  @IsString()
+  @IsOptional()
+  userName?: string;
 }

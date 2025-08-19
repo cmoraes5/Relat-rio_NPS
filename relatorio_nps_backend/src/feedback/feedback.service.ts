@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateFeedbackDto } from './dto/create-feedback.dto';
 
@@ -18,6 +18,7 @@ export class FeedbackService {
       data: {
         companyId: company.id,
         rating: dto.rating,
+        userName: dto.userName,
         comment: dto.comment,
       },
     });
