@@ -1,10 +1,10 @@
 # Sistema de Relatório de NPS
 
-Esta é uma aplicação full-stack projetada para coletar, analisar e exibir dados de NPS de forma eficiente e intuitiva.
+Esta é uma aplicação full-stack projetada para coletar, analisar e exibir dados de NPS de forma intuitiva.
 
 ## Visão Geral do Projeto
 
-A aplicação é composta por duas partes principais:
+A aplicação está divida em duas partes principais:
 
 -   **Backend:** API RESTful, construída com **NestJS**, é responsável por toda a lógica de negócio, incluindo o gerenciamento de empresas, a coleta de feedbacks e o cálculo do NPS. Utiliza **Prisma** como ORM para fazer a comunicação tipada com o banco de dados PostgreSQL.
 ![Swagger Backend](readme_images/image.png)
