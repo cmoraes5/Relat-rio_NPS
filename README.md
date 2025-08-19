@@ -7,8 +7,11 @@ Esta é uma aplicação full-stack projetada para coletar, analisar e exibir dad
 A aplicação é composta por duas partes principais:
 
 -   **Backend:** API RESTful, construída com **NestJS**, é responsável por toda a lógica de negócio, incluindo o gerenciamento de empresas, a coleta de feedbacks e o cálculo do NPS. Utiliza **Prisma** como ORM para fazer a comunicação tipada com o banco de dados PostgreSQL.
+![Swagger Backend](readme_images/image.png)
 
 -   **Frontend:** Interface web, desenvolvida com **Next.js** e o App Router. Proporciona uma experiência de usuário fluida para enviar avaliações e visualizar relatórios detalhados de NPS. A estilização é feita com **Tailwind CSS** e componentes **shadcn/ui**.
+![Home frontend](readme_images/image-1.png)
+![Relatorios Frontend](readme_images/image-2.png)
 
 ## Tecnologias e Padrões
 
